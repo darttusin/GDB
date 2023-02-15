@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="urn:student" xmlns="urn:student" xmlns:mstns="urn:student" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:complexType name="TypeInicial" mixed="true">
+    <xs:all>
+      <xs:element name="SerName" type="xs:string"/>
+      <xs:element name="FirstName" type="xs:string"/>
+      <xs:element name="SecondName" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Datas" mixed="true">
+    <xs:all>
+      <xs:element name="Inicial" type="TypeInicial"/>
+      <xs:element name="Age" type="xs:integer" minOccurs="0"/>
+      <xs:element name="Group" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:element name="root" type="Datas"/>
+</xs:schema>

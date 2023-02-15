@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<u:root xmlns:u="urn:gis">
+  <u:square>ОНГКМ</u:square>
+  <u:skv>3017</u:skv>
+  <u:ukpg>3</u:ukpg>
+  <u:dataisl>04.09.06</u:dataisl>
+  <u:intrval>1250-1560</u:intrval>
+  <u:goalisl>Контроль за распространением газовых скоплений за НКТ под пакером</u:goalisl>
+  <u:svedskv>Эксплуатационная, газовая, горизонтальная</u:svedskv>
+  <u:runcomp>
+    <u:data>04.09</u:data>
+    <u:vidisl>ННК ГК</u:vidisl>
+    <u:regisl>статика длительная</u:regisl>
+    <u:timebzam>21:20</u:timebzam>
+    <u:timeezam>22:50</u:timeezam>
+    <u:intisl>1250-1560</u:intisl>
+    <u:davustbeg>0</u:davustbeg>
+    <u:davustend>0</u:davustend>
+    <u:davzatbeg>0</u:davzatbeg>
+    <u:davzatend>0</u:davzatend>
+  </u:runcomp>
+  <u:pribor>
+    <u:typep>ГЕОТРОН № 18</u:typep>
+    <u:dataet>05.07.2006</u:dataet>
+    <u:dirpart>Скоков В.Ю.</u:dirpart>
+  </u:pribor>
+  <u:result>По данным нейтрон-нейтронного каротажа газовые скопления за НКТ под пакером отмечаются в интервале 1303.8-1346 м, в интервале 1538-1556 м - газовый “пузырь”. По сравнению  с замером от 22.08.06 их положение не изменилось (см. прил.).</u:result>
+  <u:fioint>Г. И. Комарова</u:fioint>
+</u:root>

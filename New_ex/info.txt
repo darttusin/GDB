@@ -1,0 +1,13 @@
+Добрый день! Добавил проверку по xsd и задание пространства имен для создаваемого xml.
+Для работы нужен python3 и установленные зависимости.
+Для установки зависимостей нужно в консоли в директории со скриптом вызвать команду:
+py -m pip install -r requirements.txt
+requirements.txt — это файл со список зависимостей в директории
+ 
+Разные варианты использования:
+1. Простое извлечение данных в xml
+py main.py Student_1.docx --output out.xml
+2. Извлечение данных без сохранения и валидация по схеме
+py main.py Student_1.docx --root-ns "urn:student" --root-ns-prefix u --schema StudentMix2.xsd
+3. Извлечение данных в файл и валидация по схеме
+py main.py Student_1.docx --root-ns "urn:student" --root-ns-prefix u --output out.xml --schema StudentMix2.xsd
