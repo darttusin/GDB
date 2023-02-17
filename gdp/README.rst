@@ -1,0 +1,4 @@
+Description
+===========
+
+GDP Core Library
