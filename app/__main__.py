@@ -70,20 +70,27 @@ class Ui_Dialog(object):
             self.version = "No version"
         else:
             self.logger.info("Версия - " + self.version)
-        _parser = parser.Parser(
-            self.file_path,
-            output_path=self.save_directory+"/out.xml", 
-            logger=self.logger
-        )
-        _parser.parse()
-        self.logger.info("Successful")
-        
-        res = QtWidgets.QMessageBox.information(
-            self.dialog, 
-            "Success", 
-            "Успешно выгружено в xml по пути: " +\
-                self.save_directory+"/out.xml"
-        )
+        try:
+            _parser = parser.Parser(
+                self.file_path,
+                output_path=self.save_directory+"/out.xml", 
+                logger=self.logger
+            )
+            _parser.parse()
+            self.logger.info("Successful")
+            res = QtWidgets.QMessageBox.information(
+                self.dialog, 
+                "Success", 
+                "Успешно выгружено в xml по пути: " +\
+                    self.save_directory+"/out.xml"
+            )
+        except Exception as e:
+            self.logger.error(e)
+            res = QtWidgets.QMessageBox.warning(
+                self.dialog, 
+                "Error", 
+                "Ошибка в парсе документа: "
+            )
 
     def set_titles(self):
         self.uploadPathTitle = QtWidgets.QLabel(Dialog)

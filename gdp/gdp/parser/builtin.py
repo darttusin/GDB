@@ -120,8 +120,8 @@ class SimpleXmlWriter:
         elif ttok is Token.EndTag:
             if self._data is not None:
                 self._writer.write(self._data)
-                self._data = None
             name = self._stack.pop()
+            name = name.split()[0]
             self._writer.write(self._make_tag(name, is_open_tag=False))
         elif ttok is Token.Data:
             self._data = tok.data
