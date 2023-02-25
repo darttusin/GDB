@@ -42,6 +42,7 @@ class Parser:
         with zipfile.ZipFile(self.input_path, 'r') as zip_file:
             document_str = zip_file.read('word/document.xml')
         root = etree.fromstring(document_str)  # type: ignore
+        print(root)
 
         ns = {'w': 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'}
 
@@ -50,9 +51,27 @@ class Parser:
         writer = SimpleXmlWriter(output, ns=self.root_ns,
                                  ns_prefix=self.root_ns_prefix)
         for tok in tokens:
+            # print(tok)
             writer.write(tok)
         output = output.getvalue()
 
+        is_empty = True
+        outres = re.search(r'(<\/.[^(><.)]+>)([^<]+)(<\/.[^(><.)]+>)', output)
+        if outres is not None:
+            is_empty = False
+        while is_empty != True:
+            outres = re.search(
+                r'(<\/.[^(><.)]+>)([^<]+)(<\/.[^(><.)]+>)', output)
+            if outres is None:
+                is_empty = True
+                break
+            index = output.index(outres.groups()[1])
+            print(outres.groups())
+            output = output[:index] + output[index + len(outres.groups()[1]):]
+            print(output)
+        print(output)
+
+        # print(outres.group(1))  # type: ignore
         if self.output_path is not None:
             if self.logger is not None:
                 self.logger.info(f'[+] Output to {self.output_path}')

@@ -51,18 +51,21 @@ class Ui_Dialog(object):
         self.startButton.setText(_translate("Dialog", "Запустить"))
         self.uploadFile.setText(_translate("Dialog", "..."))
         self.uploadPath.setText(_translate("Dialog", "None"))
-        self.uploadPathTitle.setText(_translate("Dialog", "Выберите word файл"))
-        self.savePathTitle.setText(_translate("Dialog", "Выберите место сохранения "))
+        self.uploadPathTitle.setText(
+            _translate("Dialog", "Выберите word файл"))
+        self.savePathTitle.setText(_translate(
+            "Dialog", "Выберите место сохранения "))
         self.savePath.setText(_translate("Dialog", "None"))
         self.saveFile.setText(_translate("Dialog", "..."))
-        self.tagTitle.setText(_translate("Dialog", "Напишите тег версии если нужен"))
+        self.tagTitle.setText(_translate(
+            "Dialog", "Напишите тег версии если нужен"))
 
     def set_start_button(self):
         self.startButton = QtWidgets.QPushButton(Dialog)
         self.startButton.setGeometry(QtCore.QRect(130, 340, 221, 51))
         self.startButton.setObjectName("startButton")
         self.startButton.clicked.connect(self.button_accept_clicked)
-    
+
     def button_accept_clicked(self):
         self.version = self.tagInput.text()
         if self.version == "":
@@ -73,22 +76,23 @@ class Ui_Dialog(object):
         try:
             _parser = parser.Parser(
                 self.file_path,
-                output_path=self.save_directory+"/out.xml", 
-                logger=self.logger
+                output_path=self.save_directory + "/out.xml",
+                logger=self.logger,
+                schema='./app/test.xsd'
             )
             _parser.parse()
             self.logger.info("Successful")
             res = QtWidgets.QMessageBox.information(
-                self.dialog, 
-                "Success", 
-                "Успешно выгружено в xml по пути: " +\
-                    self.save_directory+"/out.xml"
+                self.dialog,
+                "Success",
+                "Успешно выгружено в xml по пути: " +
+                self.save_directory + "/out.xml"
             )
         except Exception as e:
             self.logger.error(e)
             res = QtWidgets.QMessageBox.warning(
-                self.dialog, 
-                "Error", 
+                self.dialog,
+                "Error",
                 "Ошибка в парсе документа: "
             )
 
@@ -127,13 +131,14 @@ class Ui_Dialog(object):
 
     def button_upload_file_clicked(self):
         file = QtWidgets.QFileDialog.getOpenFileName(
-            self.dialog, 
-            "Open file", 
-            "/", 
+            self.dialog,
+            "Open file",
+            "/",
             "Word docx (*.docx)"
         )
         self.file_path = file[0]
-        self.file_name = self.file_path[::-1][0:self.file_path[::-1].index("/")][::-1]
+        self.file_name = self.file_path[::-
+                                        1][0:self.file_path[::-1].index("/")][::-1]
         self.uploadPath.setText(self.file_name)
         self.logger.info("Upload file path - " + self.file_path)
 
@@ -143,7 +148,7 @@ class Ui_Dialog(object):
         self.savePath.setFont(self.font)
         self.savePath.setFrameShape(QtWidgets.QFrame.Box)
         self.savePath.setObjectName("savePath")
-    
+
     def set_save_file(self):
         self.saveFile = QtWidgets.QToolButton(Dialog)
         self.saveFile.setGeometry(QtCore.QRect(410, 160, 31, 31))
@@ -152,7 +157,7 @@ class Ui_Dialog(object):
 
     def button_save_file_clicked(self):
         directory = QtWidgets.QFileDialog.getExistingDirectory(
-            self.dialog, 
+            self.dialog,
             "Select Directory"
         )
         self.save_directory = directory
