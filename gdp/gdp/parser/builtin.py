@@ -66,8 +66,10 @@ class Parser:
                 is_empty = True
                 break
             index = output.index(outres.groups()[1])
-            print(outres.groups())
-            output = output[:index] + output[index + len(outres.groups()[1]):]
+            print(outres.group(2))
+            print(outres.start(2))
+            output = output[:outres.start(
+                2)] + output[outres.start(2) + len(outres.groups()[1]):]
             print(output)
         print(output)
 

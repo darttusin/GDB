@@ -1,129 +1,109 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:element name="root">
-        <xs:complexType mixed="true">
-            <xs:sequence>
-                <xs:element name="project-structure">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" name="project-part">
-                                <xs:complexType>
-                                    <xs:simpleContent>
-                                        <xs:extension base="xs:string">
-                                            <xs:attribute name="access-level" type="xs:unsignedByte"
-                                                use="required" />
-                                        </xs:extension>
-                                    </xs:simpleContent>
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="project-functions">
-                    <xs:complexType mixed="true">
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" name="project-part-functions">
-                                <xs:complexType>
-                                    <xs:simpleContent>
-                                        <xs:extension base="xs:string">
-                                            <xs:attribute name="access-level" type="xs:unsignedByte"
-                                                use="required" />
-                                        </xs:extension>
-                                    </xs:simpleContent>
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element maxOccurs="unbounded" name="project-core-modifications">
-                    <xs:complexType>
-                        <xs:simpleContent>
-                            <xs:extension base="xs:string">
-                                <xs:attribute name="access-level" type="xs:unsignedByte"
-                                    use="required" />
-                            </xs:extension>
-                        </xs:simpleContent>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="project-programs-settings">
-                    <xs:complexType mixed="true">
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" name="project-program">
-                                <xs:complexType>
-                                    <xs:simpleContent>
-                                        <xs:extension base="xs:string">
-                                            <xs:attribute name="access-level" type="xs:unsignedByte"
-                                                use="required" />
-                                        </xs:extension>
-                                    </xs:simpleContent>
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="project-programmer-docs">
-                    <xs:complexType mixed="true">
-                        <xs:sequence>
-                            <xs:element name="project-programmer-docs-structure">
-                                <xs:complexType mixed="true">
-                                    <xs:sequence>
-                                        <xs:element maxOccurs="unbounded"
-                                            name="project-programmer-docs-component">
-                                            <xs:complexType>
-                                                <xs:simpleContent>
-                                                    <xs:extension base="xs:string">
-                                                        <xs:attribute name="access-level"
-                                                            type="xs:unsignedByte" use="required" />
-                                                    </xs:extension>
-                                                </xs:simpleContent>
-                                            </xs:complexType>
-                                        </xs:element>
-                                        <xs:element name="project-programmer-docs-configuration">
-                                            <xs:complexType mixed="true">
-                                                <xs:sequence>
-                                                    <xs:element maxOccurs="unbounded"
-                                                        name="project-programmer-docs-component">
-                                                        <xs:complexType>
-                                                            <xs:simpleContent>
-                                                                <xs:extension base="xs:string">
-                                                                    <xs:attribute
-                                                                        name="access-level"
-                                                                        type="xs:unsignedByte"
-                                                                        use="required" />
-                                                                </xs:extension>
-                                                            </xs:simpleContent>
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                </xs:sequence>
-                                            </xs:complexType>
-                                        </xs:element>
-                                        <xs:element name="project-programmer-docs-additional">
-                                            <xs:complexType mixed="true">
-                                                <xs:sequence>
-                                                    <xs:element
-                                                        name="project-programmer-docs-component">
-                                                        <xs:complexType>
-                                                            <xs:simpleContent>
-                                                                <xs:extension base="xs:string">
-                                                                    <xs:attribute
-                                                                        name="access-level"
-                                                                        type="xs:unsignedByte"
-                                                                        use="required" />
-                                                                </xs:extension>
-                                                            </xs:simpleContent>
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                </xs:sequence>
-                                            </xs:complexType>
-                                        </xs:element>
-                                    </xs:sequence>
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="project-part">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute type="xs:byte" name="access-level" use="optional"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="project-part-functions">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute type="xs:byte" name="access-level" use="optional"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="project-program">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute type="xs:byte" name="access-level" use="optional"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="project-programmer-docs-component">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute type="xs:byte" name="access-level" use="optional"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="project-programmer-docs-structure">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="project-programmer-docs-component" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="project-programmer-docs-configuration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="project-programmer-docs-component" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="project-programmer-docs-additional">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="project-programmer-docs-component"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="project-structure">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="project-part" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="project-functions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="project-part-functions" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="project-core-modifications">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute type="xs:byte" name="access-level" use="optional"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="project-programs-settings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="project-program" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="project-programmer-docs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="project-programmer-docs-structure"/>
+        <xs:element ref="project-programmer-docs-configuration"/>
+        <xs:element ref="project-programmer-docs-additional"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="root">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="project-structure"/>
+        <xs:element ref="project-functions"/>
+        <xs:element ref="project-core-modifications" maxOccurs="unbounded" minOccurs="0"/>
+        <xs:element ref="project-programs-settings"/>
+        <xs:element ref="project-programmer-docs"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
