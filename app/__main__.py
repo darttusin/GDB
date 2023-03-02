@@ -78,7 +78,7 @@ class Ui_Dialog(object):
                 self.file_path,
                 output_path=self.save_directory + "/out.xml",
                 logger=self.logger,
-                schema='./app/test.xsd'
+                # schema='./app/test.xsd'
             )
             _parser.parse()
             self.logger.info("Successful")

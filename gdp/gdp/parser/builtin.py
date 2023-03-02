@@ -153,10 +153,10 @@ class SimpleXmlWriter:
         if self._ns:
             name = f"{self._ns_prefix}:{name}"
 
-        if self._is_first_write:
-            attrs = f" xmlns:{self._ns_prefix}=\"{self._ns}\""
-        else:
-            attrs = ''
+        # if self._is_first_write:
+        #     attrs = f" xmlns:{self._ns_prefix}=\"{self._ns}\""
+        # else:
+        attrs = ''
 
         if is_open_tag:
             return f"<{name}{attrs}>"
