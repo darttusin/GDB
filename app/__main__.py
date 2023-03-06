@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-import re
 from gdp import parser
+from app.utils.docx_replace import docx_replace
+from docx import Document
 
 import logging
 import logging.handlers
@@ -85,9 +86,24 @@ class Ui_Dialog(object):
             res = QtWidgets.QMessageBox.information(
                 self.dialog,
                 "Success",
-                "Успешно выгружено в xml по пути: " +
-                self.save_directory + "/out.xml"
+                "Успешно распаршено и разделено!"
             )
+            if self.version == "No version":
+                document_1 = Document(self.file_path)
+                docx_replace(document_1, 1)
+                document_1.save(f"./{self.file_name}_1.docx")
+
+                document_2 = Document(self.file_path)
+                docx_replace(document_2, 2)
+                document_2.save(f"./{self.file_name}_2.docx")
+
+                document_4 = Document(self.file_path)
+                docx_replace(document_4, 4)
+                document_4.save(f"./{self.file_name}_4.docx")
+            else:
+                document = Document(self.file_path)
+                docx_replace(document, int(self.version))
+                document.save(f"./{self.file_name}_{self.version}.docx")
         except Exception as e:
             self.logger.error(e)
             res = QtWidgets.QMessageBox.warning(
@@ -101,19 +117,19 @@ class Ui_Dialog(object):
         self.uploadPathTitle.setGeometry(QtCore.QRect(150, 20, 141, 17))
         self.uploadPathTitle.setFont(self.font)
         self.uploadPathTitle.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.uploadPathTitle.setAlignment(QtCore.Qt.AlignCenter)
+        self.uploadPathTitle.setAlignment(QtCore.Qt.AlignCenter) #type: ignore
         self.uploadPathTitle.setObjectName("uploadPathTitle")
         self.savePathTitle = QtWidgets.QLabel(Dialog)
         self.savePathTitle.setGeometry(QtCore.QRect(110, 120, 241, 20))
         self.savePathTitle.setFont(self.font)
         self.savePathTitle.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.savePathTitle.setAlignment(QtCore.Qt.AlignCenter)
+        self.savePathTitle.setAlignment(QtCore.Qt.AlignCenter) #type: ignore
         self.savePathTitle.setObjectName("savePathTitle")
         self.tagTitle = QtWidgets.QLabel(Dialog)
         self.tagTitle.setGeometry(QtCore.QRect(100, 230, 271, 20))
         self.tagTitle.setFont(self.font)
         self.tagTitle.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.tagTitle.setAlignment(QtCore.Qt.AlignCenter)
+        self.tagTitle.setAlignment(QtCore.Qt.AlignCenter) #type: ignore
         self.tagTitle.setObjectName("tagTitle")
 
     def set_upload_path(self):
