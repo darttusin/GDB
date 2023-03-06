@@ -82,9 +82,11 @@ def docx_replace(
                             
                         data = re.findall(r'[|](\w{5,})}}}}', parapgraphs[start_parapgraph].text)
                         data_2 = re.findall(r'{{block\s*level=\"\d{1,3}\"\|\n*[^}]+}}.?}}', parapgraphs[start_parapgraph].text)
+                        data_3 = re.findall(r'{{block\s*level=\"\d{1,3}\"\|\n*[^}]+}}.?}}', text)
+                        blocks = ''.join(data_3)
                         index_data = parapgraphs[start_parapgraph].text.find(data_2[0])
                         parapgraphs[start_parapgraph].text = parapgraphs[start_parapgraph].text[:index_data] + \
-                            data[0] + parapgraphs[start_parapgraph].text[index_data+len(data_2[0]):]
+                            data[0] + text[index_data+len(blocks):]
                 continue
 
             # БАЛАНС НЕ НАЙДЕН, НАЧИНАЕМ ХОДИТЬ ПО ДРУГИМ ПАРАГРАФАМ
