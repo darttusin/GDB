@@ -1,4 +1,5 @@
 import re
+from docx import Document
 
 def docx_replace(
     doc_obj,
@@ -83,7 +84,7 @@ def docx_replace(
                         data_2 = re.findall(r'{{block\s*level=\"\d{1,3}\"\|\n*[^}]+}}.?}}', parapgraphs[start_parapgraph].text)
                         index_data = parapgraphs[start_parapgraph].text.find(data_2[0])
                         parapgraphs[start_parapgraph].text = parapgraphs[start_parapgraph].text[:index_data] + \
-                            data[0] + ":"
+                            data[0] + parapgraphs[start_parapgraph].text[index_data+len(data_2[0]):]
                 continue
 
             # БАЛАНС НЕ НАЙДЕН, НАЧИНАЕМ ХОДИТЬ ПО ДРУГИМ ПАРАГРАФАМ
@@ -119,3 +120,15 @@ def docx_replace(
                         parapgraphs[k].text = parapgraphs[k].text[end_index+1:]
                     else:
                         parapgraphs[k].text = ""
+
+document_1 = Document("./vvit.docx")
+docx_replace(document_1, 1)
+document_1.save(f"./vvit_1.docx")
+
+document_2 = Document("./vvit.docx")
+docx_replace(document_2, 2)
+document_2.save(f"./vvit_2.docx")
+
+document_4 = Document("./vvit.docx")
+docx_replace(document_4, 4)
+document_4.save(f"./vvit_4.docx")
